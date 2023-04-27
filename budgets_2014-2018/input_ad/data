@@ -1,0 +1,108 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+ viscAz=2.E-5,
+ viscAh=5.E2,
+ viscA4=1.E11,
+ diffKhT=1.E2,
+ diffKzT=5.E-6,
+ diffK4T=1.E11,
+ diffKhS=1.E2,
+ diffKzS=5.E-6,
+ diffK4S=1.E11,
+ bottomDragQuadratic = 0.002,
+ useAreaViscLength=.TRUE.,
+ beta=1.E-11,
+ tAlpha=2.E-4,
+ sBeta =7.4E-4,
+ rhonil=1035.,
+ rhoConstFresh=1000.,
+ gravity=9.81,
+ eosType = 'JMD95Z',
+ implicitDiffusion=.true.,
+ implicitViscosity=.true.,
+ implicitFreeSurface=.true.,
+ allowFreezing=.FALSE.,
+ convertFW2Salt = -1.,
+ useRealFreshWaterFlux=.FALSE.,
+ useCDscheme=.FALSE.,
+ useSingleCpuIO=.TRUE.,
+ vectorInvariantMomentum=.TRUE.,
+ staggerTimeStep=.TRUE.,
+ multiDimAdvection=.TRUE.,
+ tempAdvScheme=30,
+ saltAdvScheme=30,
+ exactConserv=.FALSE.,
+# turn on lopped cells
+ hFacMin=0.3,
+ hFacMindz=50.,
+# set precision of data files
+ readBinaryPrec=32,
+ writeBinaryPrec=32,
+ globalfiles=.FALSE.,
+ rotationPeriod=86164.,
+ debugLevel=0,
+ /
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters = 1000,
+ cg2dTargetResidual=1.E-8,
+ /
+
+# Time stepping parameters
+ &PARM03
+ nIter0 =        0,
+ nTimeSteps =  5760,
+ deltaTmom   = 1800.0,
+ deltaTtracer= 1800.0,
+ deltaTClock = 1800.0,
+ pickupStrictlyMatch=.FALSE.,
+ dumpInitAndLast=.TRUE.
+ writePickupAtEnd=.FALSE.,
+ pChkptFreq= 0.,
+ dumpFreq=   5097600.,
+ taveFreq=   0.,
+ adjDumpFreq=  0.,
+ monitorFreq= 432000.0,
+ forcing_In_AB = .FALSE.,
+ momDissip_In_AB=.FALSE.,
+ doAB_onGtGs=.FALSE.,
+ alph_AB=0.5,
+ beta_AB=0.281105,
+#
+ periodicExternalForcing=.TRUE.,
+ externForcingPeriod=2629800.,
+ externForcingCycle=31557600.,
+#
+ /
+
+# Gridding parameters
+ &PARM04
+ usingCartesianGrid=.FALSE.,
+ usingSphericalPolarGrid=.TRUE.,
+ ygOrigin   = -26.,
+ xgOrigin   = 104.,
+ delY   = 168*0.33333333333333333333,
+ delX   = 564*0.33333333333333333333,
+ delZ   = 5.0000, 5.0000, 5.0000, 5.0000, 6.0000, 7.0000, 8.0000, 9.0000,
+10.0000, 11.0000, 11.8286, 12.8571, 14.2857, 15.7143, 17.1429, 18.5714,
+20.0000, 21.4286, 22.8571, 24.2857, 25.7143, 27.1429, 28.5714, 30.0000,
+30.0000, 36.6667, 40.3333, 45.0000, 50.6667, 55.3333, 60.0000, 66.6667,
+73.3333, 80.0000, 90.0000, 107.2727, 134.5455, 161.8182, 189.0909, 206.3636,
+223.6364, 240.9091, 288.1818, 305.4545, 343.3273, 390.0000, 430.0000, 460.0000,
+510.0000, 510.0000, 510.0000,
+ /
+
+# Input datasets
+ &PARM05
+ bathyFile       = 'hn_30N_07_FINAL2_1third.bin',
+ hydrogThetaFile = 'T_assim_jan2014.data',
+ hydrogSaltFile  = 'S_assim_jan2014.data',
+ uVelInitFile    = 'U_assim_jan2014.data',
+ vVelInitFile    = 'V_assim_jan2014.data',
+ adTapeDir       = '/tmp/',
+ /
